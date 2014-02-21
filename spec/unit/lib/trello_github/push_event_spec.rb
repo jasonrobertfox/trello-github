@@ -1,5 +1,4 @@
 # Encoding: utf-8
-# http://developer.github.com/v3/activity/events/types/#pushevent
 
 require 'spec_helper'
 require 'trello_github/push_event'
@@ -33,6 +32,13 @@ describe TrelloGithub::PushEvent do
       commit.url.should eq 'http://www.commit.com/my_commit'
       commit.distinct.should be_true
     end
+  end
+
+  it 'can generate move commands' do
+    trello_command_generator = double('trello_command_generator', parse_commit: true)
+    pe = new_pe symbol_payload
+    pe.trello_commands(trello_command_generator)
+    expect(trello_command_generator).to have_received(:parse_commit).twice
   end
 end
 

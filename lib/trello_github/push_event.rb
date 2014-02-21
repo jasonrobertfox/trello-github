@@ -1,4 +1,5 @@
 # Encoding: utf-8
+# http://developer.github.com/v3/activity/events/types/#pushevent
 
 module TrelloGithub
   class PushEvent
@@ -14,6 +15,12 @@ module TrelloGithub
       @ref = payload_hash[:ref]
       @size = payload_hash[:size]
       @commits = make_commit_objects(payload_hash[:commits])
+    end
+
+    def trello_commands(trello_command_generator)
+      @commits.map do |commit|
+        trello_command_generator.parse_commit(commit.message, commit.sha, commit.author.name, commit.author.email, commit.url)
+      end
     end
 
     private
