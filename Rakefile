@@ -28,7 +28,6 @@ end
 
 require 'rspec/core/rake_task'
 RSpec::Core::RakeTask.new(:test) do |t|
-  ENV['COVERAGE'] = 'true'
   ENV['SYSTEM'] = 'false'
   t.pattern = FileList['spec/unit/**/*_spec.rb', 'spec/integration/**/*_spec.rb']
   t.rspec_opts = get_rspec_flags('unit_integration')

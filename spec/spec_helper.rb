@@ -23,11 +23,11 @@ def configure_coverage
     add_filter 'spec'
     coverage_dir 'build/coverage'
   end
+  SimpleCov.at_exit do
+    SimpleCov.result.format!
+  end
 end
 
-# Defaults
-coverage = ENV['COVERAGE'] == 'true' ? true : false
-
 # Configuration
-configure_coverage if coverage
+configure_coverage
 configure_rspec_defaults

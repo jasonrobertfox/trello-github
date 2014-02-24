@@ -47,7 +47,7 @@ def new_pe(payload_hash)
 end
 
 def symbol_payload
- { head: 'some_sha', ref: 'some/ref', size: 5, commits: [symbol_commit, symbol_commit] }
+  { head: 'some_sha', ref: 'some/ref', size: 5, commits: [symbol_commit, symbol_commit] }
 end
 
 def symbol_commit
@@ -61,7 +61,7 @@ def symbol_commit
 end
 
 def string_payload
-  { 'head' => 'some_sha', 'ref' => 'some/ref', 'size' => 5, 'commits' => [string_commit, string_commit]}
+  { 'head' => 'some_sha', 'ref' => 'some/ref', 'size' => 5, 'commits' => [string_commit, string_commit] }
 end
 
 def string_commit
