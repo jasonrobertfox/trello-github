@@ -45,31 +45,3 @@ end
 def new_pe(payload_hash)
   TrelloGithub::PushEvent.new(payload_hash)
 end
-
-def symbol_payload
-  { head: 'some_sha', ref: 'some/ref', size: 5, commits: [symbol_commit, symbol_commit] }
-end
-
-def symbol_commit
-  {
-    sha: 'some_sha',
-    message: 'some message',
-    author: { name: 'Jason', email: 'test@email.com' },
-    url: 'http://www.commit.com/my_commit',
-    distinct: true
-  }
-end
-
-def string_payload
-  { 'head' => 'some_sha', 'ref' => 'some/ref', 'size' => 5, 'commits' => [string_commit, string_commit] }
-end
-
-def string_commit
-  {
-    'sha' => 'some_sha',
-    'message' => 'some message',
-    'author' => { 'name' => 'Jason', 'email' => 'test@email.com' },
-    'url' => 'http://www.commit.com/my_commit',
-    'distinct' => true
-  }
-end
