@@ -50,14 +50,14 @@ def symbol_commit
   }
 end
 
-def string_payload
-  { 'head' => 'some_sha', 'ref' => 'some/ref', 'size' => 5, 'commits' => [string_commit, string_commit] }
+def string_payload(commits = [string_commit, string_commit])
+  { 'head' => 'some_sha', 'ref' => 'some/ref', 'size' => 5, 'commits' => commits }
 end
 
-def string_commit
+def string_commit(message = 'some message')
   {
     'sha' => 'some_sha',
-    'message' => 'some message',
+    'message' => message,
     'author' => { 'name' => 'Jason', 'email' => 'test@email.com' },
     'url' => 'http://www.commit.com/my_commit',
     'distinct' => true
