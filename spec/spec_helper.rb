@@ -8,7 +8,6 @@ def configure_rspec_defaults
     config.run_all_when_everything_filtered = true
     config.filter_run_excluding skip: true
     config.filter_run :focus
-    config.order = 'random'
   end
 end
 
@@ -33,6 +32,10 @@ configure_coverage
 configure_rspec_defaults
 
 # Global Helpers
+def resource(file_name)
+  File.expand_path(File.join(File.dirname(__FILE__), 'resources', file_name))
+end
+
 def symbol_payload
   { head: 'some_sha', ref: 'some/ref', size: 5, commits: [symbol_commit, symbol_commit] }
 end

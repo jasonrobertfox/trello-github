@@ -2,6 +2,8 @@
 
 module TrelloGithub
   class TrelloCommandGenerator
+    attr_reader :command_factories
+
     def initialize
       @command_factories = []
     end

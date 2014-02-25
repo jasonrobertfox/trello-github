@@ -1,0 +1,11 @@
+for:
+    'repo-name': 'trello-board-id'
+    rules:
+    -
+        verbs: [close, closes]
+        move:
+            to: 'close-list-id'
+    -
+        verbs: [fix, fixes]
+        move:
+            to: 'fix-list-id'

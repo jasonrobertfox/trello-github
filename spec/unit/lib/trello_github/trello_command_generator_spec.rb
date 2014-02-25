@@ -10,6 +10,7 @@ describe TrelloGithub::TrelloCommandGenerator do
   it 'should allow a command factory to be registered' do
     command_factory = mock_command_factory
     tcg.register_command_factory(command_factory)
+    tcg.command_factories.length.should eq 1
   end
 
   it 'should return no commands without registered factories' do
