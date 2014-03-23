@@ -18,9 +18,11 @@ module TrelloGithub
         event = TrelloGithub::PushEvent.new(payload)
         # TODO: This is a mess, need to clean up the way the repo name interacts
         # with the wrapper
+        # i think what we may want to do is build a set of rules on app initialize then key off the
+        # repo name to find the appropriate set
         # use the event to get the repo name
         # get the board id for the repo name
-        @trello_api_wrapper.board = @config['for'][event.repo_name]
+        @trello_api_wrapper.board_id = @config['for'][event.repo_name]
 
         # TODO: also need to think about parsing multiple repo board relationships
 

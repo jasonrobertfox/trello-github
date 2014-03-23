@@ -5,7 +5,7 @@ require 'trello_github/handlers/posthook_handler'
 
 describe TrelloGithub::Handlers::PosthookHandler do
 
-  let(:trello_api_wrapper) { double('trello_api_wrapper', move_card: true, comment_on_card: true) }
+  let(:trello_api_wrapper) { double('trello_api_wrapper', move_card: true, comment_on_card: true, :board_id= => true) }
   let(:config) { YAML.load_file(resource('test_config.yml')) }
   let(:handler) { TrelloGithub::Handlers::PosthookHandler.new(config, trello_api_wrapper) }
 

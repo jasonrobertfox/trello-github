@@ -3,12 +3,30 @@
 require 'rspec'
 require 'webmock/rspec'
 
+ENV['RACK_ENV'] = 'test'
+ENV['TRELLO_DEVELOPER_PUBLIC_KEY'] = 'abc123'
+ENV['TRELLO_MEMBER_TOKEN'] = '123abc'
+
 def configure_rspec_defaults
   RSpec.configure do |config|
     config.treat_symbols_as_metadata_keys_with_true_values = true
     config.run_all_when_everything_filtered = true
     config.filter_run_excluding skip: true
     config.filter_run :focus
+  end
+end
+
+def configure_rspec_for_system
+  require 'rack/test'
+  require 'sinatra'
+  require_relative '../lib/trello_github_server'
+
+  RSpec.configure do |config|
+    config.expect_with :rspec, :stdlib
+    config.include Rack::Test::Methods
+    def app
+      TrelloGithubServer
+    end
   end
 end
 
@@ -31,6 +49,7 @@ end
 # Configuration
 configure_coverage
 configure_rspec_defaults
+configure_rspec_for_system
 WebMock.disable_net_connect!(allow_localhost: true)
 
 # Global Helpers

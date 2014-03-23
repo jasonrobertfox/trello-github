@@ -4,6 +4,7 @@ source 'https://rubygems.org'
 ruby '2.0.0'
 
 # Dependencies
+gem 'sinatra'
 gem 'ruby-trello'
 
 group :test do
@@ -12,6 +13,7 @@ group :test do
   gem 'rubocop'
   gem 'coveralls'
   gem 'webmock'
+  gem 'rack-test'
 end
 
 group :development do
