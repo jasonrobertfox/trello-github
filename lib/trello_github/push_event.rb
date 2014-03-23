@@ -3,16 +3,15 @@
 
 module TrelloGithub
   class PushEvent
-    Commit = Struct.new(:sha, :message, :author, :url, :distinct)
+    Commit = Struct.new(:id, :message, :author, :url, :distinct)
     Author = Struct.new(:name, :email)
 
-    attr_reader :head, :ref, :size, :commits
+    attr_reader :head, :ref, :repo_name, :commits
 
     def initialize(payload_hash)
       payload_hash = symbolize(payload_hash)
-      @head = payload_hash[:head]
       @ref = payload_hash[:ref]
-      @size = payload_hash[:size]
+      @repo_name = payload_hash[:repository][:name]
       @commits = make_commit_objects(payload_hash[:commits])
     end
 
@@ -29,7 +28,7 @@ module TrelloGithub
       if commits_array
         commits_array.map do |commit|
           author = Author.new(commit[:author][:name], commit[:author][:email])
-          Commit.new(commit[:sha], commit[:message], author, commit[:url], commit[:distinct])
+          Commit.new(commit[:id], commit[:message], author, commit[:url], commit[:distinct])
         end
       end
     end

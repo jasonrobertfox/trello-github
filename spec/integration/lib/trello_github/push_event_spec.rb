@@ -21,4 +21,11 @@ describe TrelloGithub::PushEvent do
     command.card_id.should eq 24
     command.target_list.should eq 'abc123'
   end
+
+  it 'should parse a full event payload' do
+    payload = JSON.parse(File.read(resource('example_push_event.json')))
+    pe = TrelloGithub::PushEvent.new(payload)
+    pe.repo_name.should eq 'trello-github'
+    pe.commits.length.should eq 2
+  end
 end

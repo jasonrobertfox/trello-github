@@ -42,12 +42,12 @@ def resource(file_name)
 end
 
 def symbol_payload
-  { head: 'some_sha', ref: 'some/ref', size: 5, commits: [symbol_commit, symbol_commit] }
+  { ref: 'some/ref', commits: [symbol_commit, symbol_commit], repository: { name: 'some-repo-name' } }
 end
 
 def symbol_commit(message = 'some message')
   {
-    sha: 'some_sha',
+    id: 'some_sha',
     message: message,
     author: { name: 'Jason', email: 'test@email.com' },
     url: 'http://www.commit.com/my_commit',
@@ -56,12 +56,12 @@ def symbol_commit(message = 'some message')
 end
 
 def string_payload(commits = [string_commit, string_commit])
-  { 'head' => 'some_sha', 'ref' => 'some/ref', 'size' => 5, 'commits' => commits }
+  { 'ref' => 'some/ref', 'commits' => commits, 'repository' => { 'name' => 'some-repo-name' } }
 end
 
 def string_commit(message = 'some message')
   {
-    'sha' => 'some_sha',
+    'id' => 'some_sha',
     'message' => message,
     'author' => { 'name' => 'Jason', 'email' => 'test@email.com' },
     'url' => 'http://www.commit.com/my_commit',
@@ -75,5 +75,5 @@ def make_test_commit_object(message = 'some message')
 
   commit = symbol_commit(message)
   author = Author.new(commit[:author][:name], commit[:author][:email])
-  Commit.new(commit[:sha], commit[:message], author, commit[:url], commit[:distinct])
+  Commit.new(commit[:id], commit[:message], author, commit[:url], commit[:distinct])
 end

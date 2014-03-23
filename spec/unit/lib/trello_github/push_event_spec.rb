@@ -5,8 +5,8 @@ require 'trello_github/push_event'
 
 describe TrelloGithub::PushEvent do
   it 'should provide accessors for its data' do
-    pe = new_pe({})
-    %w(head ref size commits).each do |method|
+    pe = new_pe(symbol_payload)
+    %w(ref repo_name commits).each do |method|
       pe.should respond_to method.to_sym
     end
   end
@@ -14,9 +14,8 @@ describe TrelloGithub::PushEvent do
   it 'can be populated with a string or symbol hash' do
     [string_payload, symbol_payload].each do |payload|
       pe = new_pe payload
-      pe.head.should eq 'some_sha'
       pe.ref.should eq 'some/ref'
-      pe.size.should eq 5
+      pe.repo_name.should eq 'some-repo-name'
       pe.commits.length.should eq 2
     end
   end
@@ -25,7 +24,7 @@ describe TrelloGithub::PushEvent do
     [string_payload, symbol_payload].each do |payload|
       pe = new_pe payload
       commit = pe.commits.first
-      commit.sha.should eq 'some_sha'
+      commit.id.should eq 'some_sha'
       commit.message.should eq 'some message'
       commit.author.name.should eq 'Jason'
       commit.author.email.should eq 'test@email.com'
