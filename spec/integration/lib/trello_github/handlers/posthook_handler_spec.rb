@@ -19,9 +19,9 @@ describe TrelloGithub::Handlers::PosthookHandler do
   end
 
   # TODO: This is the next one that we can do comments
-  # it 'should handle a github posthook payload for simple comment' do
-  #   payload_json = string_payload([string_commit('some thing for card 16')]).to_json
-  #   handler.handle(payload_json)
-  #   expect(trello_api_wrapper).to have_received(:comment_on_card).with(16, "Jason: some thing for card 16\n\nhttp://www.commit.com/my_commit")
-  # end
+  it 'should handle a github posthook payload for simple comment' do
+    payload_json = string_payload([string_commit('some thing for card 16')]).to_json
+    handler.handle(payload_json)
+    expect(trello_api_wrapper).to have_received(:comment_on_card).with(16, "Jason: some thing for card 16\n\nhttp://www.commit.com/my_commit")
+  end
 end

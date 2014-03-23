@@ -2,6 +2,7 @@
 
 require 'trello_github/trello_command_generator'
 require 'trello_github/commands/move_factory'
+require 'trello_github/commands/comment_factory'
 
 module TrelloGithub
   class TrelloCommandGeneratorFactory
@@ -31,6 +32,8 @@ module TrelloGithub
       case command
       when 'move'
         TrelloGithub::Commands::MoveFactory.new(verbs)
+      when 'comment'
+        TrelloGithub::Commands::CommentFactory.new(verbs)
       end
     end
   end

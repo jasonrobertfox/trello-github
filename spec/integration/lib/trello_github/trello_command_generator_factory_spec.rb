@@ -15,7 +15,8 @@ describe TrelloGithub::TrelloCommandGeneratorFactory do
     config = YAML.load_file(resource('test_config.yml'))
     tcgf = TrelloGithub::TrelloCommandGeneratorFactory.new
     tcg = tcgf.build(config)
-    tcg.command_factories.length.should eq 2
-    tcg.command_factories.first.to.should eq 'close-list-id'
+    tcg.command_factories.length.should eq 4
+    tcg.command_factories[1].to.should eq 'close-list-id'
+    tcg.command_factories[3].to.should eq 'fix-list-id'
   end
 end
