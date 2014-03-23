@@ -4,11 +4,14 @@ source 'https://rubygems.org'
 ruby '2.0.0'
 
 # Dependencies
+gem 'ruby-trello'
+
 group :test do
   gem 'rake'
   gem 'rspec', '2.14.1'
   gem 'rubocop'
   gem 'coveralls'
+  gem 'webmock'
 end
 
 group :development do

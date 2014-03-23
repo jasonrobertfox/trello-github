@@ -13,7 +13,7 @@ module TrelloGithub
       def build(card_id, commit)
         # TODO: we could use the config parameter parsing to allow the user to
         # define their own message formats
-        comment = sprintf "%s: %s\n\n%s", commit.author.name, commit.message, commit.url
+        comment = format "%s: %s\n\n%s", commit.author.name, commit.message, commit.url
         Comment.new(card_id, comment)
       end
     end

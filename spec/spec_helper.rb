@@ -1,6 +1,7 @@
 # Encoding: utf-8
 
 require 'rspec'
+require 'webmock/rspec'
 
 def configure_rspec_defaults
   RSpec.configure do |config|
@@ -30,6 +31,7 @@ end
 # Configuration
 configure_coverage
 configure_rspec_defaults
+WebMock.disable_net_connect!(allow_localhost: true)
 
 # Global Helpers
 Commit = Struct.new(:sha, :message, :author, :url, :distinct)
