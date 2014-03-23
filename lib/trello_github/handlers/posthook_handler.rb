@@ -7,6 +7,7 @@ module TrelloGithub
   module Handlers
     class PosthookHandler
       def initialize(config, trello_api_wrapper)
+        @config = config
         trello_command_generator_factory = TrelloGithub::TrelloCommandGeneratorFactory.new
         @trello_command_generator = trello_command_generator_factory.build(config)
         @trello_api_wrapper = trello_api_wrapper
@@ -15,10 +16,12 @@ module TrelloGithub
       def handle(payload_json)
         payload = JSON.parse(payload_json)
         event = TrelloGithub::PushEvent.new(payload)
-
-        # TODO: need to adjust the hook data to be inline with https://developer.github.com/v3/activity/events/
+        # TODO: This is a mess, need to clean up the way the repo name interacts
+        # with the wrapper
         # use the event to get the repo name
         # get the board id for the repo name
+        @trello_api_wrapper.board = @config['for'][event.repo_name]
+
         # TODO: also need to think about parsing multiple repo board relationships
 
         commands = event.trello_commands(@trello_command_generator)
