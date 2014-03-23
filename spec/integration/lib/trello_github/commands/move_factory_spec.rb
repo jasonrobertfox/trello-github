@@ -8,7 +8,8 @@ describe TrelloGithub::Commands::MoveFactory do
   let(:mf) { TrelloGithub::Commands::MoveFactory.new(%w(fix)) }
 
   it 'should return a move command on build' do
-    command = mf.build(24)
+
+    command = mf.build(24, make_test_commit_object)
     command.should be_an_instance_of TrelloGithub::Commands::Move
   end
 end

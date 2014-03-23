@@ -11,7 +11,7 @@ module TrelloGithub
         @verbs = verbs
       end
 
-      def build(card_id)
+      def build(card_id, commit)
         Move.new(card_id, to)
       end
     end

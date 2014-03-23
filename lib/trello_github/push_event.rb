@@ -19,7 +19,7 @@ module TrelloGithub
     def trello_commands(trello_command_generator)
       # TODO: Perhaps we should verify the uniqueness of a command
       @commits.map do |commit|
-        trello_command_generator.parse_commit(commit.message, commit.sha, commit.author.name, commit.author.email, commit.url)
+        trello_command_generator.parse_commit(commit)
       end.flatten
     end
 

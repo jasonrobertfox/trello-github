@@ -14,7 +14,7 @@ describe TrelloGithub::TrelloCommandGenerator do
   end
 
   it 'should return no commands without registered factories' do
-    tcg.parse_commit('', '', '', '', '').should be_empty
+    tcg.parse_commit(make_test_commit_object).should be_empty
   end
 
   it 'should generate a command for a single card' do
@@ -27,7 +27,7 @@ describe TrelloGithub::TrelloCommandGenerator do
   it 'should not generate a command if the verb is not in the message' do
     command_factory = mock_command_factory %w(fix start closes)
     tcg.register_command_factory(command_factory)
-    tcg.parse_commit('did a thing to stops 24 for good', '', '', '', '')
+    tcg.parse_commit(make_test_commit_object('did a thing to stops 24 for good'))
     expect(command_factory).to have_received(:verbs)
     expect(command_factory).to_not have_received(:build).with(24)
   end
@@ -69,12 +69,12 @@ end
 def validate_built(command_factory, card_numbers)
   expect(command_factory).to have_received(:verbs)
   card_numbers.each do |card|
-    expect(command_factory).to have_received(:build).with(card)
+    expect(command_factory).to have_received(:build).with(card, kind_of(Commit))
   end
 end
 
 def validate_parse(message, total = 1)
-  commands = tcg.parse_commit(message, '', '', '', '')
+  commands = tcg.parse_commit(make_test_commit_object(message))
   commands.length.should eq total
   commands.each { |command| command.should eq 'command_stub' }
 end

@@ -13,13 +13,13 @@ module TrelloGithub
       @command_factories << command_factory
     end
 
-    def parse_commit(message, sha, author, email, url)
+    def parse_commit(commit)
       commands = []
       @command_factories.each do |command_factory|
         verb_string = command_factory.verbs.join('|')
-        matches = message.scan(/(?:#{verb_string})\s+?(\d+)/).flatten
+        matches = commit.message.scan(/(?:#{verb_string})\s+?(\d+)/).flatten
         matches.each do |match|
-          commands << command_factory.build(Integer(match))
+          commands << command_factory.build(Integer(match), commit)
         end
       end
       commands

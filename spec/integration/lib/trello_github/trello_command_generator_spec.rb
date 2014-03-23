@@ -10,7 +10,7 @@ describe TrelloGithub::TrelloCommandGenerator do
     move_factory.to = 'abc123'
     tcg = TrelloGithub::TrelloCommandGenerator.new
     tcg.register_command_factory(move_factory)
-    commands = tcg.parse_commit('do this to close 24 and win', '', '', '', '')
+    commands = tcg.parse_commit(make_test_commit_object('do this to close 24 and win'))
     command = commands.first
     command.should be_an_instance_of TrelloGithub::Commands::Move
     command.card_id.should eq 24

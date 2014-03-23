@@ -32,6 +32,9 @@ configure_coverage
 configure_rspec_defaults
 
 # Global Helpers
+Commit = Struct.new(:sha, :message, :author, :url, :distinct)
+Author = Struct.new(:name, :email)
+
 def resource(file_name)
   File.expand_path(File.join(File.dirname(__FILE__), 'resources', file_name))
 end
@@ -40,10 +43,10 @@ def symbol_payload
   { head: 'some_sha', ref: 'some/ref', size: 5, commits: [symbol_commit, symbol_commit] }
 end
 
-def symbol_commit
+def symbol_commit(message = 'some message')
   {
     sha: 'some_sha',
-    message: 'some message',
+    message: message,
     author: { name: 'Jason', email: 'test@email.com' },
     url: 'http://www.commit.com/my_commit',
     distinct: true
@@ -62,4 +65,13 @@ def string_commit(message = 'some message')
     'url' => 'http://www.commit.com/my_commit',
     'distinct' => true
   }
+end
+
+def make_test_commit_object(message = 'some message')
+  # TODO: This duplication is bad, we should pull these out of the event and
+  # invoke them directly
+
+  commit = symbol_commit(message)
+  author = Author.new(commit[:author][:name], commit[:author][:email])
+  Commit.new(commit[:sha], commit[:message], author, commit[:url], commit[:distinct])
 end
