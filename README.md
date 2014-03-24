@@ -1,5 +1,7 @@
 #Trello-github Documentation
 
+[![Code Climate](https://codeclimate.com/github/jasonrobertfox/trello-github.png)](https://codeclimate.com/github/jasonrobertfox/trello-github)
+
 ###Development
 
     bundle exec guard
