@@ -2,6 +2,9 @@
 
 require 'rspec'
 require 'webmock/rspec'
+require 'codeclimate-test-reporter'
+
+CodeClimate::TestReporter.start
 
 ENV['RACK_ENV'] = 'test'
 ENV['TRELLO_DEVELOPER_PUBLIC_KEY'] = 'abc123'

@@ -14,6 +14,7 @@ group :test do
   gem 'coveralls'
   gem 'webmock'
   gem 'rack-test'
+  gem 'codeclimate-test-reporter', require: nil
 end
 
 group :development do
