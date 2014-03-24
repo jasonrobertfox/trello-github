@@ -1,6 +1,6 @@
 #Trello-github Documentation
 
-[![Code Climate](https://codeclimate.com/github/jasonrobertfox/trello-github.png)](https://codeclimate.com/github/jasonrobertfox/trello-github)
+[![Code Climate](https://codeclimate.com/github/jasonrobertfox/trello-github.png)](https://codeclimate.com/github/jasonrobertfox/trello-github) [![Build Status](https://travis-ci.org/jasonrobertfox/trello-github.svg?branch=develop)](https://travis-ci.org/jasonrobertfox/trello-github) [![Coverage Status](https://coveralls.io/repos/jasonrobertfox/trello-github/badge.png)](https://coveralls.io/r/jasonrobertfox/trello-github)
 
 ###Development
 
