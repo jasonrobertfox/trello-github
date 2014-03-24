@@ -4,7 +4,7 @@ for:
     'trello-github': '52bcd359836e999e6801ac61'
     rules:
     -
-        verbs: [card]
+        verbs: [card, per]
         comment: true
     -
         verbs: [close, closes]
