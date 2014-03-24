@@ -23,3 +23,7 @@ This will start guard watching and running the tests on change.
 - commit and push to your heroku app
 - add a post hook to git hub
 
+
+###Example
+
+"Update docs to close 2."
