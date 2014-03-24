@@ -1,6 +1,7 @@
 require 'sinatra/base'
 require 'trello_github/handlers/posthook_handler'
 require 'trello_github/service/trello_api_wrapper'
+require 'yaml'
 
 class TrelloGithubServer < Sinatra::Base
   set :root, File.expand_path(File.join(Dir.pwd, 'lib'))
